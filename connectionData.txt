@@ -1,0 +1,9 @@
+<?php
+
+$server = "ix.cs.uoregon.edu";
+$dbname ="gameOfThrones";
+$user = "guest";
+$pass = "guest";
+$port="3299";
+
+?>
