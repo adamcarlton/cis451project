@@ -38,3 +38,16 @@ SELECT b.battle_name, b.battle_desc, gh.gh_name as houseInvolved
 FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING(poi_id) JOIN great_houses gh USING(gh_id)
 WHERE b.battle_name = "INSERT NAME HERE"
 
+-- get location and description of org
+SELECT org.org_name, org.org_desc, loc.location_name, r.region_name
+FROM organization org JOIN important_location loc USING(location_id) JOIN region r USING(region_id)
+WHERE org.org_name = "INSERT NAME HERE"
+
+-- get location and containing region  
+SELECT loc.location_name as location, r.region_name as inRegion, loc.location_description
+FROM important_location loc JOIN region r USING(region_id)
+WHERE loc.location_name = "INSERT NAME HERE"
+
+SELECT gh.gh_name, poi.poi_fname, poi.poi_lname, r.relig_name, r.relig_desc
+FROM great_houses gh JOIN person_of_interest poi USING(gh_id) JOIN believes_in USING (poi_id) JOIN religion r USING (relig_code)
+WHERE gh.gh_name = "INSERT NAME HERE"
