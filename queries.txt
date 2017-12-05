@@ -23,3 +23,11 @@ SELECT gh.gh_name as greatHouse, IFNULL(lh.lh_name, "Has no bannermen") as banne
 FROM great_houses gh JOIN lesser_house lh ON gh.gh_id=lh.bannerman_of_gh
 WHERE gh.gh_name = "INSERT NAME HERE"
 
+-- get person 
+SELECT poi.poi_fname, poi.poi_lname, IFNULL(poi.poi_age, "Age at death unknown") as age, imd.death_description
+FROM person_of_interest poi JOIN important_deaths imd USING(poi_id)
+WHERE poi.poi_fname = "INSERT NAME HERE"
+
+SELECT b.battle_name, b.battle_desc, CONCAT(poi.poi_fname, " ", poi.poi_lname) as wasInvolved
+FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING(poi_id)
+WHERE b.battle_name = "INSERT NAME HERE"
