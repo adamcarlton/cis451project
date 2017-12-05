@@ -1,8 +1,8 @@
 -- find person with name 
-SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, poi.poi_age, poi.poi_titles, gh.gh_name, org.org_name, r.relig_name
-FROM person_of_interest as poi JOIN great_houses as gh USING(gh_id) JOIN organization as org USING (org_id) 
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, IFNULL(IFNULL(gh.gh_name, lh.lh_name), "Doesn't belong to a house") as house, org.org_name, r.relig_name
+FROM person_of_interest as poi LEFT JOIN great_houses as gh USING(gh_id) LEFT JOIN lesser_house lh USING(lh_id) LEFT JOIN organization as org USING (org_id) 
 JOIN believes_in USING(poi_id) JOIN religion r USING(relig_code)
-WHERE poi.poi_fname = "INSERT NAME HERE"
+WHERE poi.poi_fname = "Jon";
 
 -- find all people from certain house 
 SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, poi.poi_age, poi.poi_titles, gh.gh_name, org.org_name, r.relig_name
