@@ -1,17 +1,16 @@
 -- find person with name 
-SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, IFNULL(IFNULL(gh.gh_name, lh.lh_name), "Doesn't belong to a house") as house, org.org_name, r.relig_name
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, IFNULL(IFNULL(gh.gh_name, lh.lh_name), "Doesn't belong to a house") as house, org.org_name as organization, r.relig_name as religion
 FROM person_of_interest as poi LEFT JOIN great_houses as gh USING(gh_id) LEFT JOIN lesser_house lh USING(lh_id) LEFT JOIN organization as org USING (org_id) 
 JOIN believes_in USING(poi_id) JOIN religion r USING(relig_code)
 WHERE poi.poi_fname = "Jon";
 
--- find all people from certain house 
-SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, poi.poi_age, poi.poi_titles, gh.gh_name, org.org_name, r.relig_name
+-- find all people from certain great house 
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, gh.gh_name as great_house, IFNULL(org.org_name, "N/A") as organization
 FROM person_of_interest poi LEFT JOIN great_houses gh USING(gh_id) LEFT JOIN organization org USING (org_id) 
-JOIN believes_in USING(poi_id) JOIN religion r USING(relig_code)
-WHERE gh.gh_name = "INSERT NAME HERE"
+WHERE gh.gh_name = "Stark"
 
 -- get regions that ghs control 
-SELECT IFNULL(gh.gh_name, "Not Controlled by Great House") as rulingHouse, r.region_name as controlsRegion, r.region_desc
+SELECT IFNULL(gh.gh_name, "Not Controlled by Great House") as rulingHouse, r.region_name as controlsRegion, r.region_desc as regionDescription
 FROM great_houses gh RIGHT JOIN region r ON (gh.gh_id=r.controlled_by_gh) 
 
 -- get all ghs and who they owe allegiance to
@@ -24,22 +23,22 @@ FROM great_houses gh JOIN lesser_house lh ON gh.gh_id=lh.bannerman_of_gh
 WHERE gh.gh_name = "INSERT NAME HERE"
 
 -- check if person died
-SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Age at death unknown") as age, imd.death_description
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Age at death unknown") as age, imd.death_description as deathDescription
 FROM person_of_interest poi JOIN important_deaths imd USING(poi_id)
 WHERE poi.poi_fname = "INSERT NAME HERE"
 
 -- get all pois involved in battle
-SELECT b.battle_name, b.battle_desc, CONCAT(poi.poi_fname, " ", poi.poi_lname) as wasInvolved
+SELECT b.battle_name as battle, b.battle_desc as battleDescription, CONCAT(poi.poi_fname, " ", poi.poi_lname) as wasInvolved
 FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING(poi_id)
 WHERE b.battle_name = "INSERT NAME HERE"
 
 -- get all ghs involved in battle
-SELECT b.battle_name, b.battle_desc, gh.gh_name as houseInvolved
+SELECT b.battle_name as battle, b.battle_desc as battleDescription, gh.gh_name as houseInvolved
 FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING(poi_id) JOIN great_houses gh USING(gh_id)
 WHERE b.battle_name = "INSERT NAME HERE"
 
 -- get location and description of org
-SELECT org.org_name, org.org_desc, loc.location_name, r.region_name
+SELECT org.org_name as organization, org.org_desc as organizationDescription, loc.location_name as location, r.region_name as region
 FROM organization org JOIN important_location loc USING(location_id) JOIN region r USING(region_id)
 WHERE org.org_name = "INSERT NAME HERE"
 
@@ -48,6 +47,6 @@ SELECT loc.location_name as location, r.region_name as inRegion, loc.location_de
 FROM important_location loc JOIN region r USING(region_id)
 WHERE loc.location_name = "INSERT NAME HERE"
 
-SELECT gh.gh_name, CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, r.relig_name, r.relig_desc
+SELECT gh.gh_name, CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, r.relig_name as religion, r.relig_desc as religionDescription
 FROM great_houses gh JOIN person_of_interest poi USING(gh_id) JOIN believes_in USING (poi_id) JOIN religion r USING (relig_code)
 WHERE gh.gh_name = "INSERT NAME HERE"
