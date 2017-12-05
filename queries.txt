@@ -1,11 +1,11 @@
 -- find person with name 
-SELECT poi.poi_fname, poi.poi_lname, poi.poi_age, poi.poi_titles, gh.gh_name, org.org_name, r.relig_name
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, poi.poi_age, poi.poi_titles, gh.gh_name, org.org_name, r.relig_name
 FROM person_of_interest as poi JOIN great_houses as gh USING(gh_id) JOIN organization as org USING (org_id) 
 JOIN believes_in USING(poi_id) JOIN religion r USING(relig_code)
 WHERE poi.poi_fname = "INSERT NAME HERE"
 
 -- find all people from certain house 
-SELECT poi.poi_fname, poi.poi_lname, poi.poi_age, poi.poi_titles, gh.gh_name, org.org_name, r.relig_name
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, poi.poi_age, poi.poi_titles, gh.gh_name, org.org_name, r.relig_name
 FROM person_of_interest poi LEFT JOIN great_houses gh USING(gh_id) LEFT JOIN organization org USING (org_id) 
 JOIN believes_in USING(poi_id) JOIN religion r USING(relig_code)
 WHERE gh.gh_name = "INSERT NAME HERE"
@@ -24,7 +24,7 @@ FROM great_houses gh JOIN lesser_house lh ON gh.gh_id=lh.bannerman_of_gh
 WHERE gh.gh_name = "INSERT NAME HERE"
 
 -- check if person died
-SELECT poi.poi_fname, poi.poi_lname, IFNULL(poi.poi_age, "Age at death unknown") as age, imd.death_description
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Age at death unknown") as age, imd.death_description
 FROM person_of_interest poi JOIN important_deaths imd USING(poi_id)
 WHERE poi.poi_fname = "INSERT NAME HERE"
 
@@ -48,6 +48,6 @@ SELECT loc.location_name as location, r.region_name as inRegion, loc.location_de
 FROM important_location loc JOIN region r USING(region_id)
 WHERE loc.location_name = "INSERT NAME HERE"
 
-SELECT gh.gh_name, poi.poi_fname, poi.poi_lname, r.relig_name, r.relig_desc
+SELECT gh.gh_name, CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, r.relig_name, r.relig_desc
 FROM great_houses gh JOIN person_of_interest poi USING(gh_id) JOIN believes_in USING (poi_id) JOIN religion r USING (relig_code)
 WHERE gh.gh_name = "INSERT NAME HERE"
