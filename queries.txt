@@ -14,3 +14,12 @@ WHERE gh.gh_name = "INSERT NAME HERE"
 SELECT IFNULL(gh.gh_name, "Not Controlled by Great House") as rulingHouse, r.region_name as controlsRegion, r.region_desc
 FROM great_houses gh RIGHT JOIN region r ON (gh.gh_id=r.controlled_by_gh) 
 
+-- get all ghs and who they owe allegiance to
+SELECT gh1.gh_name as greatHouse, IFNULL(gh2.gh_name, "Owes no allegiance") as owesAllegianceTo
+FROM great_houses gh1 LEFT JOIN great_house_allegiance gha USING(gh_id) LEFT JOIN great_houses gh2 ON gha.gh_ally_id=gh2.gh_id
+
+-- get bannermen of gh
+SELECT gh.gh_name as greatHouse, IFNULL(lh.lh_name, "Has no bannermen") as bannerman
+FROM great_houses gh JOIN lesser_house lh ON gh.gh_id=lh.bannerman_of_gh
+WHERE gh.gh_name = "INSERT NAME HERE"
+
