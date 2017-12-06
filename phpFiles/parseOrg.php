@@ -26,7 +26,7 @@ $query = "SELECT org.org_name as organization, org.org_desc as organizationDescr
 FROM organization org JOIN important_location loc USING(location_id) JOIN region r USING(region_id)
 WHERE org.org_name = ";
 
-$query = $query."'".$input."';";
+$query = $query.'"'.$input.'";';
 print $query;
 
 ?>
