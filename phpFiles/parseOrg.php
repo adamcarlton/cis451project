@@ -20,6 +20,7 @@ or die('Error connecting to MySQL server.');
 <?php
   
 $input = $_POST['selectForm'];
+$input = mysqli_real_escape_string($conn, $input);
 
 $query = "SELECT org.org_name as organization, org.org_desc as organizationDescription, loc.location_name as location, r.region_name as region
 FROM organization org JOIN important_location loc USING(location_id) JOIN region r USING(region_id)

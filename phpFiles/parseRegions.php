@@ -36,7 +36,7 @@ or die(mysqli_error($conn));
 print "<pre style='white-space: pre-wrap; word-break: keep-all;'>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
-    print "$row[rulingHouse],  $row[controlsRegion], $row[regionDescription]\n";
+    print "$row[rulingHouse],  $row[controlsRegion] \n$row[regionDescription]\n";
   }
 print "</pre>";
 

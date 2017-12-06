@@ -21,7 +21,7 @@ or die('Error connecting to MySQL server.');
   
 $input = $_POST['selectForm'];
 
-$query = "SELECT loc.location_name as location, r.region_name as inRegion, loc.location_description
+$query = "SELECT loc.location_name as location, r.region_name as inRegion, loc.location_description as loc_desc
 FROM important_location loc JOIN region r USING(region_id)
 WHERE loc.location_name = ";
 
@@ -41,7 +41,7 @@ or die(mysqli_error($conn));
 print "<pre style='white-space: pre-wrap; word-break: keep-all;'>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
-    print "$row[location] is in $row[inRegion], $row[loc.location_description]";
+    print "$row[location] in $row[inRegion] \n$row[loc_desc]\n";
   }
 print "</pre>";
 
