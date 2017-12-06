@@ -1,11 +1,11 @@
 -- find person with name 
-SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, IFNULL(IFNULL(gh.gh_name, lh.lh_name), "Doesn't belong to a house") as house, org.org_name as organization, r.relig_name as religion
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Age Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, IFNULL(IFNULL(gh.gh_name, lh.lh_name), "Doesn't belong to a house") as house, org.org_name as organization, r.relig_name as religion
 FROM person_of_interest as poi LEFT JOIN great_houses as gh USING(gh_id) LEFT JOIN lesser_house lh USING(lh_id) LEFT JOIN organization as org USING (org_id) 
 JOIN believes_in USING(poi_id) JOIN religion r USING(relig_code)
 WHERE poi.poi_fname = "Jon";
 
 -- find all people from certain great house 
-SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, gh.gh_name as great_house, IFNULL(org.org_name, "N/A") as organization
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Age Unknown") as age, IFNULL(poi.poi_titles, "No Titles") as titles, gh.gh_name as great_house, IFNULL(org.org_name, "N/A") as organization
 FROM person_of_interest poi LEFT JOIN great_houses gh USING(gh_id) LEFT JOIN organization org USING (org_id) 
 WHERE gh.gh_name = "Stark"
 
@@ -33,9 +33,9 @@ FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING
 WHERE b.battle_name = "INSERT NAME HERE"
 
 -- get all ghs involved in battle
-SELECT b.battle_name as battle, b.battle_desc as battleDescription, gh.gh_name as houseInvolved
-FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING(poi_id) JOIN great_houses gh USING(gh_id)
-WHERE b.battle_name = "INSERT NAME HERE"
+-- SELECT b.battle_name as battle, b.battle_desc as battleDescription, gh.gh_name as houseInvolved
+-- FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING(poi_id) JOIN great_houses gh USING(gh_id)
+-- WHERE b.battle_name = "INSERT NAME HERE"
 
 -- get location and description of org
 SELECT org.org_name as organization, org.org_desc as organizationDescription, loc.location_name as location, r.region_name as region
@@ -47,6 +47,6 @@ SELECT loc.location_name as location, r.region_name as inRegion, loc.location_de
 FROM important_location loc JOIN region r USING(region_id)
 WHERE loc.location_name = "INSERT NAME HERE"
 
-SELECT gh.gh_name, CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, r.relig_name as religion, r.relig_desc as religionDescription
-FROM great_houses gh JOIN person_of_interest poi USING(gh_id) JOIN believes_in USING (poi_id) JOIN religion r USING (relig_code)
-WHERE gh.gh_name = "INSERT NAME HERE"
+-- get location names of people and their religion for each grat house
+SELECT DISTINCT gh.gh_name, IFNULL(r.relig_name, "Faith of the Seven") as religion, IFNULL(r.relig_desc, "The majority religion of Westeros. Based on the the worship of a single deity with seven aspects/faces") as religionDescription
+FROM great_houses gh LEFT JOIN person_of_interest poi USING(gh_id) LEFT JOIN believes_in USING (poi_id) LEFT JOIN religion r USING (relig_code)

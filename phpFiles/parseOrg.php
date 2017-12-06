@@ -21,9 +21,9 @@ or die('Error connecting to MySQL server.');
   
 $input = $_POST['selectForm'];
 
-$query = "SELECT CONCAT(poi.poi_fname, ' ', poi.poi_lname) as fullName, IFNULL(poi.poi_age, 'Age Unknown') as age, IFNULL(poi.poi_titles, 'No Titles') as titles, gh.gh_name as great_house, IFNULL(org.org_name, 'N/A') as organization
-FROM person_of_interest poi LEFT JOIN great_houses gh USING(gh_id) LEFT JOIN organization org USING (org_id) 
-WHERE gh.gh_name = '";
+$query = "SELECT org.org_name as organization, org.org_desc as organizationDescription, loc.location_name as location, r.region_name as region
+FROM organization org JOIN important_location loc USING(location_id) JOIN region r USING(region_id)
+WHERE org.org_name = ";
 
 $query = $query."'".$input."';";
 
@@ -41,7 +41,7 @@ or die(mysqli_error($conn));
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
-    print "$row[fullName],  $row[age], $row[great_house], $row[organization], \n$row[titles],";
+    print "$row[organization],  $row[organizationDescription] in $row[location] in region $row[region]";
   }
 print "</pre>";
 

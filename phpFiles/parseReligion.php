@@ -19,13 +19,8 @@ or die('Error connecting to MySQL server.');
   
 <?php
   
-$input = $_POST['selectForm'];
-
-$query = "SELECT CONCAT(poi.poi_fname, ' ', poi.poi_lname) as fullName, IFNULL(poi.poi_age, 'Age Unknown') as age, IFNULL(poi.poi_titles, 'No Titles') as titles, gh.gh_name as great_house, IFNULL(org.org_name, 'N/A') as organization
-FROM person_of_interest poi LEFT JOIN great_houses gh USING(gh_id) LEFT JOIN organization org USING (org_id) 
-WHERE gh.gh_name = '";
-
-$query = $query."'".$input."';";
+$query = "SELECT DISTINCT gh.gh_name, IFNULL(r.relig_name, 'Faith of the Seven') as religion, IFNULL(r.relig_desc, 'The majority religion of Westeros. Based on the the worship of a single deity with seven aspects/faces') as religionDescription
+FROM great_houses gh LEFT JOIN person_of_interest poi USING(gh_id) LEFT JOIN believes_in USING (poi_id) LEFT JOIN religion r USING (relig_code)";
 
 ?>
 
@@ -41,7 +36,7 @@ or die(mysqli_error($conn));
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
-    print "$row[fullName],  $row[age], $row[great_house], $row[organization], \n$row[titles],";
+    print "$row[gh.gh_name],  $row[religion], $row[religionDescription]";
   }
 print "</pre>";
 
