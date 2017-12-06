@@ -41,7 +41,7 @@ or die(mysqli_error($conn));
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
-    print "$row[fullName],  $row[age], $row[great_house], $row[organization], \n$row[titles],";
+    print "$row[fullName],  $row[age], $row[great_house], $row[organization], \n$row[titles]\n";
   }
 print "</pre>";
 
