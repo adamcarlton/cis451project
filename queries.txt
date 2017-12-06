@@ -23,8 +23,8 @@ FROM great_houses gh JOIN lesser_house lh ON gh.gh_id=lh.bannerman_of_gh
 WHERE gh.gh_name = "INSERT NAME HERE"
 
 -- check if person died
-SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Age at death unknown") as age, imd.death_description as deathDescription
-FROM person_of_interest poi JOIN important_deaths imd USING(poi_id)
+SELECT CONCAT(poi.poi_fname, " ", poi.poi_lname) as fullName, IFNULL(poi.poi_age, "Age at death unknown") as age, IFNULL(imd.death_description, "Person in question has not be their end yet") as deathDescription
+FROM person_of_interest poi Left JOIN important_deaths imd USING(poi_id)
 WHERE poi.poi_fname = "INSERT NAME HERE"
 
 -- get all pois involved in battle
