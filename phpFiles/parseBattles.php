@@ -23,7 +23,7 @@ $input = $_POST['selectForm'];
 
 $query = "SELECT b.battle_name as battle, b.battle_desc as battleDescription, CONCAT(poi.poi_fname, ' ', poi.poi_lname) as fullName
 FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING(poi_id)
-WHERE b.battle_name = ";
+WHERE b.battle_name LIKE ";
 
 $query = $query."'".$input."';";
 

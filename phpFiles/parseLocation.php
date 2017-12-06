@@ -23,7 +23,7 @@ $input = $_POST['selectForm'];
 
 $query = "SELECT loc.location_name as location, r.region_name as inRegion, loc.location_description as loc_desc
 FROM important_location loc JOIN region r USING(region_id)
-WHERE loc.location_name = ";
+WHERE loc.location_name LIKE ";
 
 $query = $query."'".$input."';";
 
