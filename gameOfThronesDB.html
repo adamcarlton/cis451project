@@ -1,0 +1,247 @@
+<html>
+<head>
+       <title>Game Of Thrones Database</title>
+</head>
+<body bgcolor="white">
+<hr>
+
+<p>
+Please select the name of a character to get their age, Titles, House/Organization, and religion.
+<p>
+
+<form action="phpFiles/parsePerson.php" method="POST">
+<select name="selectForm">
+	<option value="Jon">Jon Snow</option>
+	<option value="Eddard">Eddard Stark</option>
+	<option value="Robb">Robb Stark</option>
+	<option value="Arya">Arya Stark</option>
+	<option value="Rickon">Rickon Stark</option>
+	<option value="Tyrion">Tyrion Lannister</option>
+	<option value="Tywin">Tywin Lannister</option>
+	<option value="Cersei">Cersei Lannister</option>
+	<option value="Jaime">Jaime Lannister</option>
+	<option value="Joffery">Joffery Baratheon</option>
+	<option value="Robert">Robert Baratheon</option>
+	<option value="Daenerys">Daenerys Targaryen</option>
+	<option value="Viserys">Viserys Targaryen</option>
+	<option value="Doran">Doran Martell</option>
+	<option value="Oberyn">Oberyn Martell</option>
+	<option value="Samwell">Samwell Tarly</option>
+	<option value="Melisandre">Melisandre</option>
+	<option value="Drogo">Drogo</option>
+</select>
+<br>
+ 
+<input type="submit" value="submit" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Please select a Greater House to list all people from that House.
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+<select name="selectForm">
+	<option value="Stark">Stark</option>
+	<option value="Arryn">Arryn</option>
+	<option value="Frey">Frey</option>
+	<option value="Greyjoy">Greyjoy</option>
+	<option value="Lannister">Lannister</option>
+	<option value="Targaryen">Targaryen</option>
+	<option value="Tully">Tully</option>
+	<option value="Baratheon">Baratheon</option>
+	<option value="Martell">Martell</option>
+	<option value="Bolton">Bolton</option>
+	<option value="Tyrell">Tyrell</option>
+</select>
+<br>
+ 
+<input type="submit" value="submitGH" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Press button to get all regions and which Great House controls them.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+ 
+<input type="submit" value="submitRegions" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Press button to get all Great Houses and who they owe alliegiance to.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+ 
+<input type="submit" value="submitGHAlly" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Please select Great House to get all Bannermen of selected Great House.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+<select name="selectForm">
+	<option value="Stark">Stark</option>
+	<option value="Arryn">Arryn</option>
+	<option value="Frey">Frey</option>
+	<option value="Greyjoy">Greyjoy</option>
+	<option value="Lannister">Lannister</option>
+	<option value="Targaryen">Targaryen</option>
+	<option value="Tully">Tully</option>
+	<option value="Baratheon">Baratheon</option>
+	<option value="Martell">Martell</option>
+	<option value="Bolton">Bolton</option>
+	<option value="Tyrell">Tyrell</option>
+</select>
+<br>
+ 
+<input type="submit" value="submitGHBannermen" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Please select the name of a character to check if they have died.
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+<select name="selectForm">
+	<option value="Jon">Jon Snow</option>
+	<option value="Eddard">Eddard Stark</option>
+	<option value="Robb">Robb Stark</option>
+	<option value="Arya">Arya Stark</option>
+	<option value="Rickon">Rickon Stark</option>
+	<option value="Tyrion">Tyrion Lannister</option>
+	<option value="Tywin">Tywin Lannister</option>
+	<option value="Cersei">Cersei Lannister</option>
+	<option value="Jaime">Jaime Lannister</option>
+	<option value="Joffery">Joffery Baratheon</option>
+	<option value="Robert">Robert Baratheon</option>
+	<option value="Daenerys">Daenerys Targaryen</option>
+	<option value="Viserys">Viserys Targaryen</option>
+	<option value="Doran">Doran Martell</option>
+	<option value="Oberyn">Oberyn Martell</option>
+	<option value="Samwell">Samwell Tarly</option>
+	<option value="Melisandre">Melisandre</option>
+	<option value="Drogo">Drogo</option>
+</select>
+<br>
+ 
+<input type="submit" value="submitDeath" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Please select a battle to get all involved people of interest.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+<select name="selectForm">
+	<option value="Battle Of Castle Black">Battle Of Castle Black</option>
+	<option value="Batle of the Trident">Batle of the Trident</option>
+	<option value="THe Red Wedding">THe Red Wedding</option>
+	<option value="Batle of the Bastards">Batle of the Bastards</option>
+	<option value="Batle of the Blackwater">Batle of the Blackwater</option>
+	<option value="Batle of the Goldroad">Batle of the Goldroad</option>
+	<option value="Batle of Winterfell">Batle of Winterfell</option>
+	<option value="Massacre at Hardhome">Massacre at Hardhome</option>
+	<option value="Assault of the Dreadfort">Assault of the Dreadfort</option>
+	<option value="Mutiny at Craster's Keep">Mutiny at Craster's Keep</option>
+</select>
+<br>
+ 
+<input type="submit" value="submitBattles" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Please select a battle to get all involved Great Houses.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+<select name="selectForm">
+	<option value="Battle Of Castle Black">Battle Of Castle Black</option>
+	<option value="Batle of the Trident">Batle of the Trident</option>
+	<option value="THe Red Wedding">THe Red Wedding</option>
+	<option value="Batle of the Bastards">Batle of the Bastards</option>
+	<option value="Batle of the Blackwater">Batle of the Blackwater</option>
+	<option value="Batle of the Goldroad">Batle of the Goldroad</option>
+	<option value="Batle of Winterfell">Batle of Winterfell</option>
+	<option value="Massacre at Hardhome">Massacre at Hardhome</option>
+	<option value="Assault of the Dreadfort">Assault of the Dreadfort</option>
+	<option value="Mutiny at Craster's Keep">Mutiny at Craster's Keep</option>
+</select>
+<br>
+ 
+<input type="submit" value="submitBattlesGH" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Please select organization name to get their description and location.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+<select name="selectForm">
+	<option value="Night's Watch">Night's Watch</option>
+	<option value="The Faceless Men">The Faceless Men</option>
+	<option value="Order of Maesters">Order of Maesters</option>
+	<option value="Small Council">Small Council</option>
+	<option value="City Watch (Gold Cloaks)">City Watch (Gold Cloaks)</option>
+	<option value="Kingsguard">Kingsguard</option>
+	<option value="Iron Bank of Braavos">Iron Bank of Braavos</option>
+	<option value="Warlocks of Qarth">Warlocks of Qarth</option>
+	<option value="Unsullied">Unsullied</option>
+	<option value="Brotherhood Without Banners">Brotherhood Without Banners</option>
+</select>
+<br>
+ 
+<input type="submit" value="submitOrg" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Please select a location to get its containing region and description.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+<select name="selectForm">
+	<option value="The Wall">The Wall</option>
+	<option value="Highgarden">Highgarden</option>
+	<option value="Sunspear">Sunspear</option>
+	<option value="Winterfell">Winterfell</option>
+	<option value="The Eyrie">The Eyrie</option>
+	<option value="RIverrun">RIverrun</option>
+	<option value="The Twins">The Twins</option>
+	<option value="Storm's End">Storm's End</option>
+	<option value="Vaes Dothrak">Vaes Dothrak</option>
+	<option value="Braavos">Braavos</option>
+	<option value="Kings Landing">Kings Landing</option>
+	<option value="Oldtown">Oldtown</option>
+	<option value="Qarth">Qarth</option>
+	<option value="Astapor">Astapor</option>
+</select>
+<br>
+ 
+<input type="submit" value="submitLocation" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<p>
+Press button to get the religion of all Great Houses and description of that religion.  
+<p>
+
+<form action="gameOfThronesDB.php" method="POST">
+
+<input type="submit" value="submitReligion" align="bottom">
+<input type="reset" value="erase" align="bottom">
+</form>
+
+<hr>
+
+</body>
+</html>
