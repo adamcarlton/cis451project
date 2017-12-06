@@ -27,7 +27,6 @@ FROM organization org JOIN important_location loc USING(location_id) JOIN region
 WHERE org.org_name LIKE ";
 
 $query = $query.'"'.$input.'";';
-print $query;
 
 ?>
 
