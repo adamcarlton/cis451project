@@ -26,7 +26,6 @@ FROM battle b JOIN fought_in USING (battle_id) JOIN person_of_interest poi USING
 WHERE b.battle_name LIKE ";
 
 $query = $query."'".$input."';";
-print($query);
 
 ?>
 
