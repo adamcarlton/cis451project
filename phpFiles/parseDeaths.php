@@ -21,7 +21,7 @@ or die('Error connecting to MySQL server.');
   
 $input = $_POST['selectForm'];
 
-$query = "SELECT CONCAT(poi.poi_fname, ' ', poi.poi_lname) as fullName, IFNULL(poi.poi_age, 'Age at death unknown') as age, imd.death_description as deathDescription
+$query = "SELECT CONCAT(poi.poi_fname, ' ', poi.poi_lname) as fullName, IFNULL(poi.poi_age, 'Age at death unknown') as age, IFNULL(imd.death_description, 'Person in question has not be their end yet')  as deathDescription
 FROM person_of_interest poi JOIN important_deaths imd USING(poi_id)
 WHERE poi.poi_fname = ";
 
@@ -38,7 +38,7 @@ Result:
 $result = mysqli_query($conn, $query)
 or die(mysqli_error($conn));
 
-print "<pre>";
+print "<pre style='white-space: pre-wrap; word-break: keep-all;'>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
     print "$row[fullName], $row[age], $row[deathDescription]";

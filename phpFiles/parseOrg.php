@@ -40,7 +40,7 @@ Result:
 $result = mysqli_query($conn, $query)
 or die(mysqli_error($conn));
 
-print "<pre>";
+print "<pre style='white-space: pre-wrap; word-break: keep-all;'>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
     print "$row[organization],  $row[organizationDescription] in $row[location] in region $row[region]";

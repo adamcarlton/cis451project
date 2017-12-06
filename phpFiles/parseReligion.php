@@ -10,7 +10,7 @@ or die('Error connecting to MySQL server.');
 <html>
 <head>
   <title>Database Result</title>
-  </head>
+</head>
   
   <body bgcolor="white">
   
