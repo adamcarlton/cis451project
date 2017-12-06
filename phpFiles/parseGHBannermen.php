@@ -41,7 +41,7 @@ or die(mysqli_error($conn));
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
     print "\n";
-    print "$row[bannerman] is bannerman of $row[greatHouse]";
+    print "$row[bannerman], $row[greatHouse]";
   }
 print "</pre>";
 
