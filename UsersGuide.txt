@@ -1,0 +1,4 @@
+User's guide 
+Select the desired query and press the submit button. The query well be run and you will be redirected to the output page. Use the back button to go back to the menu page and select another query or input. 
+
+A few of the of the queries do not need user input and all is required is to hit the submit button of the desired query. 
